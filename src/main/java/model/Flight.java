@@ -1,54 +1,81 @@
 package model;
 
+import util.IdUtil;
+import util.Util;
+
 import java.time.LocalDateTime;
-import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Flight {
-  private int id;
+  private final int id;
   private LocalDateTime startDate;
   private LocalDateTime endDate;
   private Airport toWhere;
   private Airport fromWhere;
   private Airline airline;
-  private int freeSeats;
+  private final List<Passenger> passengerList = new ArrayList<>();
 
-
+  public Flight(DateWithElement startDate,
+                DateWithElement endDate,
+                Airport toWhere,
+                Airport fromWhere,
+                Airline airline) {
+    this.startDate = startDate.getLocalDateTime();
+    this.endDate = endDate.getLocalDateTime();
+    this.toWhere = toWhere;
+    this.fromWhere = fromWhere;
+    this.airline = airline;
+    this.id = IdUtil.getNewId(IdFIle.FLIGHTID).orElseThrow();
+  }
 
   public int getId() {
     return id;
   }
 
-  public long getDate() {
-    return date;
+  public LocalDateTime getStartDate() {
+    return startDate;
   }
 
-  public void setDate(long date) {
-    this.date = date;
+  public void setStartDate(LocalDateTime startDate) {
+    this.startDate = startDate;
   }
 
-  public long getDuration() {
-    return duration;
+  public LocalDateTime getEndDate() {
+    return endDate;
   }
 
-  public void setDuration(long duration) {
-    this.duration = duration;
+  public void setEndDate(LocalDateTime endDate) {
+    this.endDate = endDate;
   }
 
-  public String getToWhere() {
+  public Airport getToWhere() {
     return toWhere;
   }
 
-  public String getFromWhere() {
+  public void setToWhere(Airport toWhere) {
+    this.toWhere = toWhere;
+  }
+
+  public Airport getFromWhere() {
     return fromWhere;
   }
 
-  public int getFreeSeats() {
-    return freeSeats;
+  public void setFromWhere(Airport fromWhere) {
+    this.fromWhere = fromWhere;
   }
 
-  public void setFreeSeats(int freeSeats) {
-    this.freeSeats = freeSeats;
+  public Airline getAirline() {
+    return airline;
+  }
+
+  public void setAirline(Airline airline) {
+    this.airline = airline;
+  }
+
+  public List<Passenger> getPassengerList() {
+    return passengerList;
   }
 
   @Override
@@ -56,21 +83,17 @@ public class Flight {
     if (o == null || getClass() != o.getClass()) return false;
     if (this == o) return true;
     Flight flight = (Flight) o;
-    return id == flight.id
-        && date == flight.date
-        && duration == flight.duration
-        && toWhere.equals(flight.toWhere)
-        && fromWhere.equals(flight.fromWhere);
+    return id == flight.id;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, date, duration, toWhere, fromWhere);
+    return Objects.hash(id);
   }
 
   @Override
   public String toString() {
-    return "Flight{id=%d, date=%d, duration=%d, toWhere='%s', fromWhere='%s', freeSeats=%d}"
-        .formatted(id, date, duration, toWhere, fromWhere, freeSeats);
+    return "Flight{id=%d, startDate=%s, endDate=%s, toWhere=%s, fromWhere=%s, airline=%s, passengerList=%s}"
+        .formatted(id, startDate, endDate, toWhere, fromWhere, airline, passengerList);
   }
 }
