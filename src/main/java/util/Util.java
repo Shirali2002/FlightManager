@@ -3,15 +3,6 @@ package util;
 import java.util.Scanner;
 
 public class Util {
-  private static final Util util = new Util();
-
-  private Util(){
-  }
-
-  public static Util getInstance(){
-    return util;
-  }
-
   public static Scanner getNewScanner(){
     return new Scanner(System.in);
   }

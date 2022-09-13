@@ -1,7 +1,8 @@
 package model;
 
+import database.DB;
+import util.DateUtil;
 import util.IdUtil;
-import util.Util;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ public class Flight {
   private Airline airline;
   private final List<Passenger> passengerList = new ArrayList<>();
 
-  public Flight(DateWithElement startDate,
-                DateWithElement endDate,
+  public Flight(DateUtil startDate,
+                DateUtil endDate,
                 Airport toWhere,
                 Airport fromWhere,
                 Airline airline) {
@@ -27,7 +28,7 @@ public class Flight {
     this.toWhere = toWhere;
     this.fromWhere = fromWhere;
     this.airline = airline;
-    this.id = IdUtil.getNewId(IdFIle.FLIGHTID).orElseThrow();
+    this.id = IdUtil.getNewId(DB.FLIGHT_ID).orElseThrow();
   }
 
   public int getId() {

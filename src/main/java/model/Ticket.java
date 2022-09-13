@@ -1,5 +1,6 @@
 package model;
 
+import database.DB;
 import util.IdUtil;
 
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ public class Ticket {
   private final LocalDateTime dateOfReserve;
 
   public Ticket(User user, Flight flight) {
-    this.id = IdUtil.getNewId(IdFIle.TICKETID).orElseThrow();
+    this.id = IdUtil.getNewId(DB.TICKET_ID).orElseThrow();
     this.user = user;
     this.flight = flight;
     this.dateOfReserve = LocalDateTime.now();

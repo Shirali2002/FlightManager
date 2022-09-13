@@ -1,5 +1,6 @@
 package model;
 
+import database.DB;
 import util.IdUtil;
 
 import java.util.Objects;
@@ -11,7 +12,7 @@ public class User {
   private String password;
 
   public User(String name, String surname, String password) {
-    this.id = IdUtil.getNewId(IdFIle.USERID).orElseThrow();
+    this.id = IdUtil.getNewId(DB.USER_ID).orElseThrow();
     this.name = name;
     this.surname = surname;
     this.password = password;
