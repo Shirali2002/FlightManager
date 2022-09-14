@@ -1,30 +1,31 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Passenger {
-  private int userId;
-  private String fullName;
+public class Passenger implements Serializable {
+  private String name;
+  private String surname;
 
-  public Passenger(int userId, String fullName) {
-    this.userId = userId;
-    this.fullName = fullName;
+  public Passenger(String name, String surname) {
+    this.name = name;
+    this.surname = surname;
   }
 
-  public int getUserId() {
-    return userId;
+  public String getName() {
+    return name;
   }
 
-  public void setUserId(int userId) {
-    this.userId = userId;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public String getFullName() {
-    return fullName;
+  public String getSurname() {
+    return surname;
   }
 
-  public void setFullName(String fullName) {
-    this.fullName = fullName;
+  public void setSurname(String surname) {
+    this.surname = surname;
   }
 
   @Override
@@ -32,16 +33,16 @@ public class Passenger {
     if (o == null || getClass() != o.getClass()) return false;
     if (this == o) return true;
     Passenger passenger = (Passenger) o;
-    return userId == passenger.userId;
+    return name.equals(passenger.name) && surname.equals(passenger.surname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId);
+    return Objects.hash(name, surname);
   }
 
   @Override
   public String toString() {
-    return "Passenger{userId=%d, fullName='%s'}".formatted(userId, fullName);
+    return "%s %s".formatted(name, surname);
   }
 }

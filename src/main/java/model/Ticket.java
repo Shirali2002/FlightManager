@@ -3,19 +3,23 @@ package model;
 import database.DB;
 import util.IdUtil;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Ticket {
+public class Ticket implements Serializable {
   private final int id;
-  private User user;
+  private Passenger passenger;
   private Flight flight;
+  private final int userIdWhoOrderedTicket;
   private final LocalDateTime dateOfReserve;
 
-  public Ticket(User user, Flight flight) {
+
+  public Ticket(Passenger passenger, Flight flight, int userIdWhoOrderedTicket) {
     this.id = IdUtil.getNewId(DB.TICKET_ID).orElseThrow();
-    this.user = user;
+    this.passenger = passenger;
     this.flight = flight;
+    this.userIdWhoOrderedTicket = userIdWhoOrderedTicket;
     this.dateOfReserve = LocalDateTime.now();
   }
 
@@ -23,12 +27,12 @@ public class Ticket {
     return id;
   }
 
-  public User getUser() {
-    return user;
+  public Passenger getPassenger() {
+    return passenger;
   }
 
-  public void setUser(User user) {
-    this.user = user;
+  public void setPassenger(Passenger passenger) {
+    this.passenger = passenger;
   }
 
   public Flight getFlight() {
@@ -39,14 +43,18 @@ public class Ticket {
     this.flight = flight;
   }
 
+  public int getUserIdWhoOrderedTicket() {
+    return userIdWhoOrderedTicket;
+  }
+
   public LocalDateTime getDateOfReserve() {
     return dateOfReserve;
   }
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) return true;
     Ticket ticket = (Ticket) o;
     return id == ticket.id;
   }
@@ -58,7 +66,7 @@ public class Ticket {
 
   @Override
   public String toString() {
-    return "Ticket{id=%d, user=%s, flight=%s, dateOfReserve=%s}"
-        .formatted(id, user, flight, dateOfReserve);
+    return "Ticket{id=%d, passenger=%s, flight=%s, userIdWhoOrderedTicket=%d, dateOfReserve=%s}"
+        .formatted(id, passenger, flight, userIdWhoOrderedTicket, dateOfReserve);
   }
 }
