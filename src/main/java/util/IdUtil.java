@@ -15,12 +15,15 @@ public class IdUtil {
       return Optional.of(id);
     } catch (IOException e) {
       return Optional.empty();
+    } catch (NumberFormatException nfe){
+      // burda log olacaq
+      return Optional.empty();
     }
   }
 
   private static void idIncrement(int id, DB db) {
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(dbFolderPath+db.getFileName()))) {
-      bw.write(id + 1);
+      bw.write(String.valueOf(++id));
     } catch (IOException e) {
       throw new RuntimeException("There is problem with id generator.");
     }

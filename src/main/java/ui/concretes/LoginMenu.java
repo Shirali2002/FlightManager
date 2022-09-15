@@ -1,5 +1,6 @@
 package ui.concretes;
 
+import command.Register;
 import ui.abstracts.AbstractLoginMenu;
 
 public class LoginMenu extends AbstractLoginMenu {
@@ -23,7 +24,11 @@ public class LoginMenu extends AbstractLoginMenu {
 
   @Override
   protected void register() {
-    throw new RuntimeException("not implemented");
+    if (Register.register()){
+      System.out.println("Register is successful.");
+    } else {
+      System.out.println("Register is not successful.");
+    }
   }
 
   @Override

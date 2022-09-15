@@ -10,15 +10,15 @@ import java.util.Objects;
 public class Ticket implements Serializable {
   private final int id;
   private Passenger passenger;
-  private Flight flight;
+  private int flightId;
   private final int userIdWhoOrderedTicket;
   private final LocalDateTime dateOfReserve;
 
 
-  public Ticket(Passenger passenger, Flight flight, int userIdWhoOrderedTicket) {
+  public Ticket(Passenger passenger, int flightId, int userIdWhoOrderedTicket) {
     this.id = IdUtil.getNewId(DB.TICKET_ID).orElseThrow();
     this.passenger = passenger;
-    this.flight = flight;
+    this.flightId = flightId;
     this.userIdWhoOrderedTicket = userIdWhoOrderedTicket;
     this.dateOfReserve = LocalDateTime.now();
   }
@@ -35,12 +35,12 @@ public class Ticket implements Serializable {
     this.passenger = passenger;
   }
 
-  public Flight getFlight() {
-    return flight;
+  public int getFlightId() {
+    return flightId;
   }
 
-  public void setFlight(Flight flight) {
-    this.flight = flight;
+  public void setFlightId(int flightId) {
+    this.flightId = flightId;
   }
 
   public int getUserIdWhoOrderedTicket() {
@@ -66,7 +66,7 @@ public class Ticket implements Serializable {
 
   @Override
   public String toString() {
-    return "Ticket{id=%d, passenger=%s, flight=%s, userIdWhoOrderedTicket=%d, dateOfReserve=%s}"
-        .formatted(id, passenger, flight, userIdWhoOrderedTicket, dateOfReserve);
+    return "Ticket{id=%d, passenger=%s, flightId=%d, userIdWhoOrderedTicket=%d, dateOfReserve=%s}"
+        .formatted(id, passenger, flightId, userIdWhoOrderedTicket, dateOfReserve);
   }
 }

@@ -50,7 +50,7 @@ public class DatabaseUtil {
 
   public static <B> boolean updateById(int id, B value, DB db){
     try {
-      HashMap<Integer, B> data = DatabaseUtil.<B>getAll(db).orElseThrow();
+      HashMap<Integer, B> data = DatabaseUtil.<B>getAll(db).orElse(new HashMap<>());
       data.put(id, value);
       DatabaseUtil.<B>save(data, db);
       return true;
