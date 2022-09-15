@@ -1,6 +1,7 @@
 package ui.concretes;
 
 
+import command.FlightInfo;
 import ui.abstracts.AbstractMenu;
 
 public class Menu extends AbstractMenu {
@@ -40,7 +41,7 @@ public class Menu extends AbstractMenu {
 
   @Override
   protected void showFlightInfo() {
-    throw new RuntimeException("not implemented");
+    FlightInfo.displayFlightInfo();
   }
 
   @Override

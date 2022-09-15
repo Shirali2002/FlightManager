@@ -1,5 +1,6 @@
 package controller;
 
+import exception.NoFlightMatchedIdException;
 import model.Flight;
 import service.FlightService;
 
@@ -17,11 +18,11 @@ public class FlightController {
     return flightController;
   }
 
-  public Optional<HashMap<Integer, Flight>> getAllFlight(){
+  public HashMap<Integer, Flight> getAllFlight(){
     return flightService.getAllFlight();
   }
 
-  public Optional<Flight> getFlightById(int id){
+  public Flight getFlightById(int id) throws NoFlightMatchedIdException {
     return flightService.getFlightById(id);
   }
 

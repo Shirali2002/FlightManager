@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Flight implements Serializable {
+public class Flight implements Serializable, Formattable {
   private final int id;
   private LocalDateTime startDate;
   private LocalDateTime endDate;
@@ -102,6 +102,11 @@ public class Flight implements Serializable {
 
   public int getFreeSeatCount() {
     return flightCapacity - passengerList.size();
+  }
+
+  @Override
+  public String prettyFormat() {
+    throw new RuntimeException("not implemented");
   }
 
   @Override

@@ -2,6 +2,7 @@ package service;
 
 import dao.DAO;
 import dao.FlightRepository;
+import exception.NoFlightMatchedIdException;
 import model.Flight;
 
 import java.util.HashMap;
@@ -18,11 +19,16 @@ public class FlightService {
     return flightService;
   }
 
-  public Optional<HashMap<Integer, Flight>> getAllFlight(){
-    return flightDAO.getAll();
+  public HashMap<Integer, Flight> getAllFlight(){
+     return flightDAO.getAll().orElse(new HashMap<>());
   }
 
-  public Optional<Flight> getFlightById(int id){
-    return flightDAO.getById(id);
+  public Flight getFlightById(int id) throws NoFlightMatchedIdException {
+    Optional<Flight> f = flightDAO.getById(id);
+    if (f.isPresent()){
+      return f.get();
+    } else {
+      throw new NoFlightMatchedIdException();
+    }
   }
 }

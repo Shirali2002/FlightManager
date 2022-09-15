@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Ticket implements Serializable {
+public class Ticket implements Serializable, Formattable {
   private final int id;
   private Passenger passenger;
   private int flightId;
@@ -49,6 +49,11 @@ public class Ticket implements Serializable {
 
   public LocalDateTime getDateOfReserve() {
     return dateOfReserve;
+  }
+
+  @Override
+  public String prettyFormat() {
+    throw new RuntimeException("not implemented");
   }
 
   @Override

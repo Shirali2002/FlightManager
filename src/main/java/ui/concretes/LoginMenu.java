@@ -1,5 +1,6 @@
 package ui.concretes;
 
+import command.FlightInfo;
 import command.Register;
 import ui.abstracts.AbstractLoginMenu;
 
@@ -33,7 +34,7 @@ public class LoginMenu extends AbstractLoginMenu {
 
   @Override
   protected void showFlightInfo() {
-    throw new RuntimeException("not implemented");
+    FlightInfo.displayFlightInfo();
   }
 
   @Override

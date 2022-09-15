@@ -26,6 +26,7 @@ public class Register {
           .getString("Please choose password at least 6 character. Use uppercase, lowercase and digit: ", console);
       String passwordAgain = ConsoleUtil.getString("Please enter password again: ", console);
       if (username.equalsIgnoreCase("exit")) {
+        console.printLine("Returned to menu...");
         return false;
       } else if (password.equals(passwordAgain)) {
         LoginController.getInstance().register(name, surname, username, password);
@@ -35,15 +36,14 @@ public class Register {
       }
     } catch (
         PasswordNotEqualException pe) {
-      System.out.println("Passwords are not equal.");
+      console.printLine("Passwords are not equal.");
       return mainRegister(name, surname, console);
     } catch (
         UniqueUsernameException ue) {
-      System.out.println("Username has been used. Please change username.");
+      console.printLine("Username has been used. Please change username.");
       return mainRegister(name, surname, console);
-    } catch (
-        StrongPasswordException se) {
-      System.out.println("Password is not strong. Use uppercase, lowercase, digit and use at least 6 character.");
+    } catch (StrongPasswordException se) {
+      console.printLine("Password is not strong. Use uppercase, lowercase, digit and use at least 6 character.");
       return mainRegister(name, surname, console);
     }
   }
