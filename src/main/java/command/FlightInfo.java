@@ -3,8 +3,7 @@ package command;
 import console.Console;
 import console.RealConsole;
 import controller.FlightController;
-import exception.NoFlightMatchedIdException;
-import model.Flight;
+import exception.NoSuchFlightException;
 import util.ConsoleUtil;
 
 public class FlightInfo {
@@ -16,7 +15,7 @@ public class FlightInfo {
     try {
       int id = ConsoleUtil.getInt("Please choose id to get INFO:", console);
       return FlightController.getInstance().getFlightById(id).prettyFormat();
-    } catch (NoFlightMatchedIdException ne) {
+    } catch (NoSuchFlightException ne) {
       return "There is no flight matching this id.";
     }
   }

@@ -2,7 +2,7 @@ package command;
 
 import console.Console;
 import console.RealConsole;
-import controller.LoginController;
+import controller.UserController;
 import exception.PasswordNotEqualException;
 import exception.StrongPasswordException;
 import exception.UniqueUsernameException;
@@ -29,7 +29,7 @@ public class Register {
         console.printLine("Returned to menu...");
         return false;
       } else if (password.equals(passwordAgain)) {
-        LoginController.getInstance().register(name, surname, username, password);
+        UserController.getInstance().register(name, surname, username, password);
         return true;
       } else {
         throw new PasswordNotEqualException();

@@ -1,7 +1,9 @@
 package app;
 
 import ui.abstracts.AbstractLoginMenu;
+import ui.abstracts.AbstractMenu;
 import ui.concretes.LoginMenu;
+import ui.concretes.Menu;
 
 public class FlightManager {
   private static final FlightManager flightManager = new FlightManager();

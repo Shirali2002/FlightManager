@@ -4,6 +4,7 @@ package service;
 import app.FlightManager;
 import dao.DAO;
 import dao.UserRepository;
+import exception.NoSuchUserException;
 import exception.StrongPasswordException;
 import exception.UniqueUsernameException;
 import model.User;
@@ -11,17 +12,18 @@ import model.User;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class LoginService {
-  public static final LoginService loginService = new LoginService();
+public class UserService {
+  public static final UserService USER_SERVICE = new UserService();
   private final DAO<User> userDao = UserRepository.getInstance();
 
-  private LoginService() {
+  private UserService() {
   }
 
-  public static LoginService getInstance() {
-    return loginService;
+  public static UserService getInstance() {
+    return USER_SERVICE;
   }
 
   public boolean login(String username, String password){
@@ -35,6 +37,7 @@ public class LoginService {
     if (userList.size() == 1 && FlightManager.getLoggedInUserId() == -1){
       User user = userList.get(0);
       FlightManager.getInstance().login(user.getId());
+
       return true;
     } else {
       return false;
@@ -57,6 +60,20 @@ public class LoginService {
       return userDao.updateById(newUser.getId(), newUser);
     }
   }
+
+  public HashMap<Integer, User> getAllUser(){
+    return userDao.getAll().orElse(new HashMap<>());
+  }
+
+  public User getUserById(int id) throws NoSuchUserException{
+    Optional<User> user = userDao.getById(id);
+    if (user.isPresent()){
+      return user.get();
+    } else {
+      throw new NoSuchUserException();
+    }
+  }
+
 
   private boolean isUsernameUnique(String username) {
     DAO<User> userDAO = UserRepository.getInstance();

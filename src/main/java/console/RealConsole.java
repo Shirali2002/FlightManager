@@ -7,7 +7,7 @@ public class RealConsole implements Console{
 
   @Override
   public String nextLine() {
-    return sc.nextLine();
+    return sc.nextLine(); //message elave ele
   }
 
   @Override

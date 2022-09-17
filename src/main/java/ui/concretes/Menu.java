@@ -1,7 +1,9 @@
 package ui.concretes;
 
 
+import app.FlightManager;
 import command.FlightInfo;
+import command.UserBooking;
 import ui.abstracts.AbstractMenu;
 
 public class Menu extends AbstractMenu {
@@ -16,7 +18,7 @@ public class Menu extends AbstractMenu {
 
   @Override
   protected void logout() {
-    throw new RuntimeException("not implemented");
+    FlightManager.getInstance().logout();
   }
 
   @Override
@@ -26,7 +28,7 @@ public class Menu extends AbstractMenu {
 
   @Override
   protected void showMyFlights() {
-    throw new RuntimeException("not implemented");
+    UserBooking.showUserBooking();
   }
 
   @Override

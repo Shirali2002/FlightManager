@@ -1,6 +1,8 @@
 package ui.concretes;
 
+import app.FlightManager;
 import command.FlightInfo;
+import command.Login;
 import command.Register;
 import ui.abstracts.AbstractLoginMenu;
 
@@ -15,7 +17,7 @@ public class LoginMenu extends AbstractLoginMenu {
   }
   @Override
   protected void exit() {
-    throw new RuntimeException("not implemented");
+    FlightManager.getInstance().stop();
   }
 
   @Override
@@ -44,6 +46,6 @@ public class LoginMenu extends AbstractLoginMenu {
 
   @Override
   protected void login() {
-    throw new RuntimeException("not implemented");
+    Login.login();
   }
 }

@@ -2,7 +2,11 @@ package util;
 
 import database.DB;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -13,9 +17,9 @@ public class DatabaseUtil {
     try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(db.getFileName()))) {
       return Optional.of((HashMap<Integer, B>) oi.readObject());
     } catch (IOException | ClassNotFoundException e) {
-      System.out.println("There is nothing in db.");
       return Optional.empty();
     }
+
   }
 
   public static <B> boolean save(HashMap<Integer, B> data, DB db) {
@@ -23,23 +27,18 @@ public class DatabaseUtil {
       oo.writeObject(data);
       return true;
     } catch (IOException e) {
-      System.out.println("There is problem with file.");
       return false;
     }
   }
 
   public static <B> Optional<B> getById(int id, DB db){
-    B b = DatabaseUtil.<B>getAll(db).orElseThrow().get(id);
-    if (b!=null){
-      return Optional.of(b);
-    } else {
-      return Optional.empty();
-    }
+    return DatabaseUtil.<B>getAll(db)
+        .map(integerBHashMap -> integerBHashMap.get(id));
   }
 
   public static <B> boolean deleteById(int id, DB db){
     try {
-      HashMap<Integer, B> data = DatabaseUtil.<B>getAll(db).orElseThrow();
+      HashMap<Integer, B> data = DatabaseUtil.<B>getAll(db).orElse(new HashMap<>());
       data.remove(id);
       DatabaseUtil.<B>save(data, db);
       return true;
