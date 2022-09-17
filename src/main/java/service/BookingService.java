@@ -26,7 +26,7 @@ public class BookingService {
   public Optional<Ticket> bookFlight(String passengerName, String passengerSurname,
                                      int flightId, int userId){
     Ticket newTicket = new Ticket(new Passenger(passengerName, passengerSurname), flightId, userId);
-    if (ticketDAO.updateById(newTicket.getId(), newTicket)){
+    if (ticketDAO.add(newTicket.getId(), newTicket)){
       return Optional.of(newTicket);
     } else {
       return Optional.empty();

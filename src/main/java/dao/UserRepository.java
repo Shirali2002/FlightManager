@@ -37,9 +37,17 @@ public class UserRepository implements DAO<User> {
     return DatabaseUtil.deleteById(id, DB.USER_DB);
   }
 
+  @Override
+  public boolean add(int id, User value) {
+    return DatabaseUtil.add(id, value, DB.USER_DB);
+  }
 
   @Override
   public boolean updateById(int id, User value) {
+    if (getById(id).isEmpty()){
+      return false;
+    }
+    value.setId(id);
     return DatabaseUtil.updateById(id, value, DB.USER_DB);
   }
 }

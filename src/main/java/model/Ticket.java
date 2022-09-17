@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Ticket implements Serializable, Formattable {
-  private final int id;
+  private int id;
   private Passenger passenger;
   private int flightId;
   private final int userIdWhoOrderedTicket;
@@ -25,6 +25,10 @@ public class Ticket implements Serializable, Formattable {
 
   public int getId() {
     return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Passenger getPassenger() {

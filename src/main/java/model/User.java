@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class User implements Serializable {
-  private final int id;
+  private int id;
   private String name;
   private String surname;
   private String username;
@@ -23,6 +23,10 @@ public class User implements Serializable {
 
   public int getId() {
     return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getName() {

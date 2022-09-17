@@ -8,5 +8,6 @@ public interface DAO<A> {
   Optional<A> getById(int id);
   boolean save(HashMap<Integer, A> data);
   boolean deleteById(int id);
+  boolean add(int id, A value);
   boolean updateById(int id, A value);
 }

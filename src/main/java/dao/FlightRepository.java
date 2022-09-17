@@ -38,7 +38,16 @@ public class FlightRepository implements DAO<Flight> {
   }
 
   @Override
+  public boolean add(int id, Flight value) {
+    return DatabaseUtil.add(id, value, DB.FLIGHT_DB);
+  }
+
+  @Override
   public boolean updateById(int id, Flight value) {
+    if (getById(id).isEmpty()){
+      return false;
+    }
+    value.setId(id);
     return DatabaseUtil.updateById(id, value, DB.FLIGHT_DB);
   }
 }

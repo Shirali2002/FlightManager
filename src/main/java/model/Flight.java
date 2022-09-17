@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Flight implements Serializable, Formattable {
-  private final int id;
+  private int id;
   private LocalDateTime startDate;
   private LocalDateTime endDate;
   private Airport toWhere;
@@ -37,6 +37,10 @@ public class Flight implements Serializable, Formattable {
 
   public int getId() {
     return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public LocalDateTime getStartDate() {

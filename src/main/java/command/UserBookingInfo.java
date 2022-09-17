@@ -10,7 +10,7 @@ import util.ConsoleUtil;
 import java.util.List;
 import java.util.Optional;
 
-public class UserBooking {
+public class UserBookingInfo {
   public static void showUserBooking(){
     showUserBooking(new RealConsole());
   }

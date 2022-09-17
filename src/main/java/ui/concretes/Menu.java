@@ -3,7 +3,7 @@ package ui.concretes;
 
 import app.FlightManager;
 import command.FlightInfo;
-import command.UserBooking;
+import command.UserBookingInfo;
 import ui.abstracts.AbstractMenu;
 
 public class Menu extends AbstractMenu {
@@ -28,7 +28,7 @@ public class Menu extends AbstractMenu {
 
   @Override
   protected void showMyFlights() {
-    UserBooking.showUserBooking();
+    UserBookingInfo.showUserBooking();
   }
 
   @Override

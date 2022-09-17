@@ -39,7 +39,16 @@ public class TicketRepository implements DAO<Ticket> {
   }
 
   @Override
+  public boolean add(int id, Ticket value) {
+    return DatabaseUtil.add(id, value, DB.TICKET_DB);
+  }
+
+  @Override
   public boolean updateById(int id, Ticket value) {
+    if (getById(id).isEmpty()){
+      return false;
+    }
+    value.setId(id);
     return DatabaseUtil.updateById(id, value, DB.TICKET_DB);
   }
 }

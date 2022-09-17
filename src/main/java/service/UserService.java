@@ -57,7 +57,7 @@ public class UserService {
       throw new UniqueUsernameException();
     }  else {
       User newUser = new User(name, surname, username, password);
-      return userDao.updateById(newUser.getId(), newUser);
+      return userDao.add(newUser.getId(), newUser);
     }
   }
 

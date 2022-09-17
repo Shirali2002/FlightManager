@@ -47,9 +47,23 @@ public class DatabaseUtil {
     }
   }
 
+  public static <B> boolean add(int id, B value, DB db){
+    try {
+      HashMap<Integer, B> data = DatabaseUtil.<B>getAll(db).orElse(new HashMap<>());
+      data.put(id, value);
+      DatabaseUtil.save(data, db);
+      return true;
+    } catch (Exception e){
+      return false;
+    }
+  }
+
   public static <B> boolean updateById(int id, B value, DB db){
     try {
       HashMap<Integer, B> data = DatabaseUtil.<B>getAll(db).orElse(new HashMap<>());
+      if (DatabaseUtil.getById(id, db).isEmpty()){
+        return false;
+      }
       data.put(id, value);
       DatabaseUtil.<B>save(data, db);
       return true;
