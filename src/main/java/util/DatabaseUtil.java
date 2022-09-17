@@ -14,7 +14,7 @@ public class DatabaseUtil {
   private static final String dbFolderPath = "src/main/java/database/db/";
 
   public static <B> Optional<HashMap<Integer, B>> getAll(DB db) {
-    try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(db.getFileName()))) {
+    try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(dbFolderPath+db.getFileName()))) {
       return Optional.of((HashMap<Integer, B>) oi.readObject());
     } catch (IOException | ClassNotFoundException e) {
       return Optional.empty();
@@ -23,7 +23,7 @@ public class DatabaseUtil {
   }
 
   public static <B> boolean save(HashMap<Integer, B> data, DB db) {
-    try (ObjectOutputStream oo = new ObjectOutputStream(new FileOutputStream(db.getFileName()))) {
+    try (ObjectOutputStream oo = new ObjectOutputStream(new FileOutputStream(dbFolderPath+db.getFileName()))) {
       oo.writeObject(data);
       return true;
     } catch (IOException e) {

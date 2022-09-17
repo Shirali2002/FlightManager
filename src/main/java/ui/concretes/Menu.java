@@ -2,8 +2,10 @@ package ui.concretes;
 
 
 import app.FlightManager;
+import command.CancelTicket;
 import command.FlightInfo;
-import command.UserBookingInfo;
+import command.MyBookingInfo;
+import command.OnlineBoard;
 import ui.abstracts.AbstractMenu;
 
 public class Menu extends AbstractMenu {
@@ -28,12 +30,12 @@ public class Menu extends AbstractMenu {
 
   @Override
   protected void showMyFlights() {
-    UserBookingInfo.showUserBooking();
+    MyBookingInfo.showUserBooking();
   }
 
   @Override
   protected void cancelBooking() {
-    throw new RuntimeException("not implemented");
+    CancelTicket.cancelTicket();
   }
 
   @Override
@@ -48,6 +50,6 @@ public class Menu extends AbstractMenu {
 
   @Override
   protected void showOnlineBoard() {
-    throw new RuntimeException("not implemented");
+    OnlineBoard.showOnlineBoard();
   }
 }

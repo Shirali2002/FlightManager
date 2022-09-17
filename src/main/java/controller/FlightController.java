@@ -5,6 +5,7 @@ import model.Flight;
 import service.FlightService;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class FlightController {
   private static final FlightController flightController = new FlightController();
@@ -17,7 +18,7 @@ public class FlightController {
     return flightController;
   }
 
-  public HashMap<Integer, Flight> getAllFlight(){
+  public HashMap<Integer, Flight> getAllFlight() {
     return flightService.getAllFlight();
   }
 
@@ -25,4 +26,8 @@ public class FlightController {
     return flightService.getFlightById(id);
   }
 
+  public List<Flight> getAllFlightsNextHours(int howManyHours) {
+    return flightService.getAllFlightsNextHours(howManyHours);
   }
+
+}

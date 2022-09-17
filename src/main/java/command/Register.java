@@ -34,12 +34,10 @@ public class Register {
       } else {
         throw new PasswordNotEqualException();
       }
-    } catch (
-        PasswordNotEqualException pe) {
+    } catch (PasswordNotEqualException pe) {
       console.printLine("Passwords are not equal.");
       return mainRegister(name, surname, console);
-    } catch (
-        UniqueUsernameException ue) {
+    } catch (UniqueUsernameException ue) {
       console.printLine("Username has been used. Please change username.");
       return mainRegister(name, surname, console);
     } catch (StrongPasswordException se) {

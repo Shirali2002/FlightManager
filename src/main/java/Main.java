@@ -1,10 +1,4 @@
 import app.FlightManager;
-import dao.DAO;
-import dao.FlightRepository;
-import model.Airline;
-import model.Airport;
-import model.Flight;
-import util.DateUtil;
 
 public class Main {
   public static void main(String[] args) {

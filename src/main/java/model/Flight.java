@@ -1,7 +1,7 @@
 package model;
 
 import database.DB;
-import util.DateUtil;
+import util.FlightDate;
 import util.IdUtil;
 
 import java.io.Serializable;
@@ -20,8 +20,8 @@ public class Flight implements Serializable, Formattable {
   private final List<Passenger> passengerList = new ArrayList<>();
   private int flightCapacity;
 
-  public Flight(DateUtil startDate,
-                DateUtil endDate,
+  public Flight(FlightDate startDate,
+                FlightDate endDate,
                 Airport toWhere,
                 Airport fromWhere,
                 Airline airline,

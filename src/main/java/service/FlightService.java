@@ -1,12 +1,16 @@
 package service;
 
+import controller.FlightController;
 import dao.DAO;
 import dao.FlightRepository;
 import exception.NoSuchFlightException;
 import model.Flight;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class FlightService {
   public static final FlightService flightService = new FlightService();
@@ -30,5 +34,16 @@ public class FlightService {
     } else {
       throw new NoSuchFlightException();
     }
+  }
+
+  public List<Flight> getAllFlightsNextHours(int howManyHours) {
+    return getAllFlight()
+        .values().stream()
+        .filter(f -> {
+          LocalDateTime startDate = f.getStartDate();
+          return startDate.isAfter(LocalDateTime.now())
+              && startDate.isBefore(LocalDateTime.now().plusHours(howManyHours));
+        })
+        .collect(Collectors.toList());
   }
 }

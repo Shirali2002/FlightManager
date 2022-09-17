@@ -3,6 +3,7 @@ package ui.concretes;
 import app.FlightManager;
 import command.FlightInfo;
 import command.Login;
+import command.OnlineBoard;
 import command.Register;
 import ui.abstracts.AbstractLoginMenu;
 
@@ -41,7 +42,7 @@ public class LoginMenu extends AbstractLoginMenu {
 
   @Override
   protected void showOnlineBoard() {
-    throw new RuntimeException("not implemented");
+    OnlineBoard.showOnlineBoard();
   }
 
   @Override

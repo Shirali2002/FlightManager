@@ -1,5 +1,6 @@
 package controller;
 
+import console.Console;
 import model.Passenger;
 import model.Ticket;
 import service.BookingService;
@@ -31,7 +32,22 @@ public class BookingController {
     return bookingService.getAllBooking();
   }
 
+  public Optional<Ticket> getBookingById(int id){
+    return bookingService.getBookingById(id);
+  }
+
+  public void displayUserBookings(int userId, Console console) {
+    getInstance().getUserBookings(userId).stream()
+        .map(id -> getInstance().getAllBooking().get(id))
+        .forEach(t -> console.printLine(t.prettyFormat()));
+  }
+
   public List<Integer> getUserBookings(int userId) {
     return bookingService.getUserBookings(userId);
   }
+
+  public Optional<Integer> getUserIdByUsername(String username) {
+    return bookingService.getUserIdByUsername(username);
+  }
+
 }
