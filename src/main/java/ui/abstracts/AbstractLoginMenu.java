@@ -1,6 +1,7 @@
 package ui.abstracts;
 
 import app.FlightManager;
+import console.RealConsole;
 import util.ConsoleUtil;
 import util.MenuUtil;
 
@@ -8,7 +9,7 @@ public abstract class AbstractLoginMenu {
   public void start() {
     while (FlightManager.isAppOnline()) {
       System.out.println(MenuUtil.loginMenuText);
-      int input = ConsoleUtil.getInt(MenuUtil.menuMessage);
+      int input = ConsoleUtil.getInt(MenuUtil.menuMessage, new RealConsole());
       switch (input) {
         case 1 -> login();
         case 2 -> showOnlineBoard();

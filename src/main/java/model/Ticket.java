@@ -57,7 +57,8 @@ public class Ticket implements Serializable, Formattable {
 
   @Override
   public String prettyFormat() {
-    throw new RuntimeException("pretty format not implemented");
+    return toString();
+//    throw new RuntimeException("pretty format not implemented");
   }
 
   @Override

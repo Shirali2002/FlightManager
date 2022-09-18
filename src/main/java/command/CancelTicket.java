@@ -17,7 +17,7 @@ public class CancelTicket {
   public static void cancelTicket(Console console) {
     BookingController bc = BookingController.getInstance();
     bc.displayUserBookings(FlightManager.getLoggedInUserId(), console);
-    int inputId = ConsoleUtil.getInt("Please enter booking id which you want to cancel:");
+    int inputId = ConsoleUtil.getInt("Please enter booking id which you want to cancel:", console);
     Optional<Ticket> bookingById = bc.getBookingById(inputId);
     if (bookingById.isPresent()) {
       Ticket ticket = bookingById.get();

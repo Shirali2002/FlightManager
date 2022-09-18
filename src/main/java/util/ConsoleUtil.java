@@ -4,9 +4,9 @@ import console.Console;
 import console.RealConsole;
 
 public class ConsoleUtil {
-  public static int getInt(String inputMessage) {
-    return getInt(inputMessage, new RealConsole());
-  }
+//  public static int getInt(String inputMessage) {
+//    return getInt(inputMessage, new RealConsole());
+//  }
 
   public static int getInt(String inputMessage, Console console) {
     System.out.println(inputMessage);
@@ -19,9 +19,9 @@ public class ConsoleUtil {
     }
   }
 
-  public static String getString(String inputMessage) {
-    return getString(inputMessage, new RealConsole());
-  }
+//  public static String getString(String inputMessage) {
+//    return getString(inputMessage, new RealConsole());
+//  }
 
   public static String getString(String inputMessage, Console console) {
     System.out.println(inputMessage);

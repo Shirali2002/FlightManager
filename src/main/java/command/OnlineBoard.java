@@ -11,7 +11,7 @@ public class OnlineBoard {
   }
 
   public static void showOnlineBoard(Console console) {
-    int hours = ConsoleUtil.getInt("How many hours you want to see: ");
+    int hours = ConsoleUtil.getInt("How many hours you want to see: ", console);
     FlightController.getInstance().getAllFlightsNextHours(hours)
         .forEach(f -> console.printLine(f.prettyFormat()));
   }

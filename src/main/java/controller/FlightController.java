@@ -1,8 +1,10 @@
 package controller;
 
 import exception.NoSuchFlightException;
+import model.Airport;
 import model.Flight;
 import service.FlightService;
+import util.FlightDate;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,5 +31,17 @@ public class FlightController {
   public List<Flight> getAllFlightsNextHours(int howManyHours) {
     return flightService.getAllFlightsNextHours(howManyHours);
   }
+
+  public List<Flight> searchFlightByFields(List<Airport> startPoint, List<Airport> endPoint,
+                                           FlightDate date, int numberOfTicket)
+      throws NoSuchFlightException {
+    List<Flight> result = flightService.searchFlightByFields(startPoint, endPoint, date, numberOfTicket);
+    if (result.size() > 0) {
+      return result;
+    } else {
+      throw new NoSuchFlightException();
+    }
+  }
+
 
 }

@@ -21,7 +21,8 @@ public class Register {
 
   private static boolean mainRegister(String name, String surname, Console console) {
     try {
-      String username = ConsoleUtil.getString("Please choose username. Enter exit to return menu: ", console);
+      String username = ConsoleUtil
+          .getString("Please choose username. If you want to return menu enter exit: ", console);
       String password = ConsoleUtil
           .getString("Please choose password at least 6 character. Use uppercase, lowercase and digit: ", console);
       String passwordAgain = ConsoleUtil.getString("Please enter password again: ", console);
@@ -45,6 +46,4 @@ public class Register {
       return mainRegister(name, surname, console);
     }
   }
-
-
 }

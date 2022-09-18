@@ -88,7 +88,7 @@ public class Flight implements Serializable, Formattable {
   }
 
   public boolean addPassenger(Passenger passenger) {
-    if ((flightCapacity - passengerList.size()) > 0){
+    if ((flightCapacity - passengerList.size()) > 0) {
       this.passengerList.add(passenger);
       return true;
     } else {
@@ -110,7 +110,8 @@ public class Flight implements Serializable, Formattable {
 
   @Override
   public String prettyFormat() {
-    throw new RuntimeException("pretty format not implemented");
+    return toString();
+//    throw new RuntimeException("pretty format not implemented");
   }
 
   @Override

@@ -4,7 +4,9 @@ import controller.FlightController;
 import dao.DAO;
 import dao.FlightRepository;
 import exception.NoSuchFlightException;
+import model.Airport;
 import model.Flight;
+import util.FlightDate;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -23,13 +25,13 @@ public class FlightService {
     return flightService;
   }
 
-  public HashMap<Integer, Flight> getAllFlight(){
-     return flightDAO.getAll().orElse(new HashMap<>());
+  public HashMap<Integer, Flight> getAllFlight() {
+    return flightDAO.getAll().orElse(new HashMap<>());
   }
 
   public Flight getFlightById(int id) throws NoSuchFlightException {
     Optional<Flight> f = flightDAO.getById(id);
-    if (f.isPresent()){
+    if (f.isPresent()) {
       return f.get();
     } else {
       throw new NoSuchFlightException();
@@ -45,5 +47,23 @@ public class FlightService {
               && startDate.isBefore(LocalDateTime.now().plusHours(howManyHours));
         })
         .collect(Collectors.toList());
+  }
+
+  public List<Flight> searchFlightByFields(List<Airport> startPoint, List<Airport> endPoint,
+                                           FlightDate date, int numberOfTicket) {
+    return startPoint.stream()
+        .flatMap(sp -> endPoint.stream()
+            .flatMap(ep ->
+                getAllFlight().values().stream()
+                    .filter(f ->
+                        f.getFromWhere().equals(sp)
+                            && f.getToWhere().equals(ep)
+                            && f.getStartDate().getYear() == date.getYear()
+                            && f.getStartDate().getMonthValue() == date.getMonth()
+                            && f.getStartDate().getDayOfMonth() == date.getDay()
+                            && f.getFreeSeatCount() >= numberOfTicket
+                    )
+            )
+        ).collect(Collectors.toList());
   }
 }
