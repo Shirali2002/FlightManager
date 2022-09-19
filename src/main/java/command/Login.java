@@ -1,9 +1,12 @@
 package command;
 
+import app.FlightManager;
 import console.Console;
 import console.RealConsole;
 import controller.UserController;
+import ui.concretes.AdminMenu;
 import ui.concretes.Menu;
+import util.AdminUtil;
 import util.ConsoleUtil;
 
 public class Login {
@@ -11,7 +14,11 @@ public class Login {
     String username = ConsoleUtil.getString("Please enter your username:", console);
     String password = ConsoleUtil.getString("Please enter your password:", console);
 
-    if (UserController.getInstance().login(username, password)){
+    if (AdminUtil.adminCheck(username, password)){
+      FlightManager.getInstance().adminlogin();
+      console.printLine("Admin panel started..");
+      AdminMenu.getInstance().start();
+    }else if (UserController.getInstance().login(username, password)){
       console.printLine("Login success.");
       Menu.getInstance().start();
     } else {
@@ -22,5 +29,7 @@ public class Login {
   public static void login() {
     login(new RealConsole());
   }
+
+
 
   }

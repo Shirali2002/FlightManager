@@ -6,7 +6,7 @@ import util.IdUtil;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class User implements Serializable {
+public class User implements Serializable, Formattable {
   private int id;
   private String name;
   private String surname;
@@ -59,6 +59,11 @@ public class User implements Serializable {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  @Override
+  public String prettyFormat() {
+    return String.format(" %d | %s | %s %s ", getId(), getUsername(), getName(), getSurname());
   }
 
   @Override

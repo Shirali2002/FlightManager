@@ -20,5 +20,14 @@ public class MenuUtil {
       6. Exit
       """;
 
+  public static final String adminMenuText = """
+      1. Add new flight
+      2. Cancel flight
+      3. Remove user
+      4. Remove Ticket
+      5. Help
+      6. Logout
+      """;
+
   public static final String menuMessage = "Please enter the feature number you wish to use:";
 }

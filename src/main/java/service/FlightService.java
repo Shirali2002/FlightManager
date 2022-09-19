@@ -4,6 +4,7 @@ import controller.FlightController;
 import dao.DAO;
 import dao.FlightRepository;
 import exception.NoSuchFlightException;
+import exception.NoSuchUserException;
 import model.Airport;
 import model.Flight;
 import util.FlightDate;
@@ -36,6 +37,13 @@ public class FlightService {
     } else {
       throw new NoSuchFlightException();
     }
+  }
+
+  public boolean cancelFlightById(int id) throws NoSuchFlightException {
+    if (flightDAO.getById(id).isEmpty()) {
+      throw new NoSuchFlightException();
+    }
+    return flightDAO.deleteById(id);
   }
 
   public List<Flight> getAllFlightsNextHours(int howManyHours) {

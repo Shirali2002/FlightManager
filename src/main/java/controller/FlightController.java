@@ -28,6 +28,10 @@ public class FlightController {
     return flightService.getFlightById(id);
   }
 
+  public boolean cancelFlightById(int id) throws NoSuchFlightException {
+    return flightService.cancelFlightById(id);
+  }
+
   public List<Flight> getAllFlightsNextHours(int howManyHours) {
     return flightService.getAllFlightsNextHours(howManyHours);
   }

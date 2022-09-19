@@ -26,15 +26,15 @@ public class UserService {
     return USER_SERVICE;
   }
 
-  public boolean login(String username, String password){
+  public boolean login(String username, String password) {
     List<User> userList = userDao.getAll().orElse(new HashMap<>())
         .values().stream()
         .filter(u ->
-               Objects.equals(u.getUsername(), username)
-            && Objects.equals(u.getPassword(), password)
+            Objects.equals(u.getUsername(), username)
+                && Objects.equals(u.getPassword(), password)
         ).collect(Collectors.toList());
 
-    if (userList.size() == 1 && FlightManager.getLoggedInUserId() == -1){
+    if (userList.size() == 1 && FlightManager.getLoggedInUserId() == -1) {
       User user = userList.get(0);
       FlightManager.getInstance().login(user.getId());
 
@@ -44,7 +44,7 @@ public class UserService {
     }
   }
 
-  public void logout(){
+  public void logout() {
     FlightManager.getInstance().logout();
   }
 
@@ -55,27 +55,37 @@ public class UserService {
       throw new StrongPasswordException();
     } else if (!isUsernameUnique(username)) {
       throw new UniqueUsernameException();
-    }  else {
+    } else {
       User newUser = new User(name, surname, username, password);
       return userDao.add(newUser.getId(), newUser);
     }
   }
 
-  public HashMap<Integer, User> getAllUser(){
+  public HashMap<Integer, User> getAllUser() {
     return userDao.getAll().orElse(new HashMap<>());
   }
 
-  public User getUserById(int id) throws NoSuchUserException{
+  public User getUserById(int id) throws NoSuchUserException {
     Optional<User> user = userDao.getById(id);
-    if (user.isPresent()){
+    if (user.isPresent()) {
       return user.get();
     } else {
       throw new NoSuchUserException();
     }
   }
 
+  public boolean deleteUserById(int id) throws NoSuchUserException {
+    if (userDao.getById(id).isEmpty()) {
+      throw new NoSuchUserException();
+    }
+    return userDao.deleteById(id);
+  }
+
 
   private boolean isUsernameUnique(String username) {
+    if (username.equals("admin")) {
+      return false;
+    }
     DAO<User> userDAO = UserRepository.getInstance();
     return userDAO.getAll().orElse(new HashMap<>())
         .values().stream()

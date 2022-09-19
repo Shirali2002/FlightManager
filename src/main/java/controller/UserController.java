@@ -41,4 +41,8 @@ public class UserController {
     return userService.getUserById(id);
   }
 
+  public boolean deleteUserById(int id) throws NoSuchUserException {
+    return userService.deleteUserById(id);
+  }
+
 }

@@ -1,6 +1,8 @@
 package controller;
 
 import console.Console;
+import exception.NoSuchBookingException;
+import exception.NoSuchFlightException;
 import model.Passenger;
 import model.Ticket;
 import service.BookingService;
@@ -24,7 +26,7 @@ public class BookingController {
     return bookingService.bookFlight(passengerName, passengerSurname, flightId, userId);
   }
 
-  public boolean cancelBooking(int ticketId) {
+  public boolean cancelBooking(int ticketId) throws NoSuchBookingException {
     return bookingService.cancelBooking(ticketId);
   }
 

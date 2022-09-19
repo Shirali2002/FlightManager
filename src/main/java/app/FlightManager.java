@@ -9,6 +9,7 @@ public class FlightManager {
   private static final FlightManager flightManager = new FlightManager();
   private static boolean appOnline;
   private static int loggedInUserId = -1;
+  private static boolean adminLoggedIn = false;
 
   private FlightManager() {
   }
@@ -29,6 +30,10 @@ public class FlightManager {
     return loggedInUserId;
   }
 
+  public static boolean isAdminLoggedIn(){
+    return adminLoggedIn;
+  }
+
   public void start() {
     appOnline = true;
     AbstractLoginMenu loginMenu = LoginMenu.getInstance();
@@ -45,5 +50,13 @@ public class FlightManager {
 
   public void logout(){
     loggedInUserId = -1;
+  }
+
+  public void adminlogin(){
+    adminLoggedIn = true;
+  }
+
+  public void adminlogout(){
+    adminLoggedIn = false;
   }
 }

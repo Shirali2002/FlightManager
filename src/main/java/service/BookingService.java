@@ -4,6 +4,8 @@ import controller.BookingController;
 import controller.UserController;
 import dao.DAO;
 import dao.TicketRepository;
+import exception.NoSuchBookingException;
+import exception.NoSuchFlightException;
 import model.Flight;
 import model.Passenger;
 import model.Ticket;
@@ -35,7 +37,10 @@ public class BookingService {
     }
   }
 
-  public boolean cancelBooking(int ticketId){
+  public boolean cancelBooking(int ticketId) throws NoSuchBookingException {
+    if (ticketDAO.getById(ticketId).isEmpty()){
+      throw new NoSuchBookingException();
+    }
     return ticketDAO.deleteById(ticketId);
   }
 
