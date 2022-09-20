@@ -6,7 +6,7 @@ import controller.BookingController;
 import exception.NoSuchBookingException;
 import util.ConsoleUtil;
 
-public class RemoveTicket {
+public class RemoveTicketForAdmin {
   public static void removeTicket() {
     removeTicket(new RealConsole());
   }

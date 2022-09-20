@@ -55,7 +55,7 @@ public enum Airport implements Formattable, AirCompanyInterface {
   public static void displayAllAirports(Console console){
     Arrays.stream(Airport.values())
         .forEach(a -> console.printLine(a.prettyFormat()));
-  }
+  } 
 
   @Override
   public String prettyFormat() {

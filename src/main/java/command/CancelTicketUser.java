@@ -9,7 +9,7 @@ import util.ConsoleUtil;
 
 import java.util.Optional;
 
-public class CancelTicket {
+public class CancelTicketUser {
   public static void cancelTicket() {
     cancelTicket(new RealConsole());
   }

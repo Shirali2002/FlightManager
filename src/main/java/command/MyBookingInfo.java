@@ -13,16 +13,6 @@ public class MyBookingInfo {
     showUserBooking(new RealConsole());
   }
 
-//  public static void showUserBooking(Console console){
-//    BookingController bc = BookingController.getInstance();
-//    String username = ConsoleUtil.getString("Please enter your username: ", console);
-//    Optional<Integer> userId = bc.getUserIdByUsername(username);
-//    userId.ifPresent(id -> bc.displayUserBookings(id, console));
-//    if (userId.isEmpty()){
-//      console.printLine("There is no user matched username.");
-//    }
-//  }
-
   public static void showUserBooking(Console console){
     BookingController.getInstance()
         .displayUserBookings(FlightManager.getLoggedInUserId(), console);
@@ -33,5 +23,13 @@ public class MyBookingInfo {
 
 
 
-
+//  public static void showUserBooking(Console console){
+//    BookingController bc = BookingController.getInstance();
+//    String username = ConsoleUtil.getString("Please enter your username: ", console);
+//    Optional<Integer> userId = bc.getUserIdByUsername(username);
+//    userId.ifPresent(id -> bc.displayUserBookings(id, console));
+//    if (userId.isEmpty()){
+//      console.printLine("There is no user matched username.");
+//    }
+//  }
   }
