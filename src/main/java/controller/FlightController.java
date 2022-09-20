@@ -28,6 +28,10 @@ public class FlightController {
     return flightService.getFlightById(id);
   }
 
+  public boolean addFlight(Flight value){
+    return flightService.addFlight(value);
+  }
+
   public boolean cancelFlightById(int id) throws NoSuchFlightException {
     return flightService.cancelFlightById(id);
   }

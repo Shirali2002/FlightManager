@@ -4,10 +4,7 @@ import controller.FlightController;
 import controller.UserController;
 import dao.DAO;
 import dao.FlightRepository;
-import model.Airline;
-import model.Airport;
-import model.Flight;
-import model.User;
+import model.*;
 import util.FlightDate;
 
 public class Main {
@@ -27,5 +24,13 @@ public class Main {
     System.out.println(BookingController.getInstance().getAllBooking());
 
     FlightManager.getInstance().start();
+
+//    AirCompanyInterface ac = Airline.HAINAN_AIRLINES;
+//
+//    Airport a = (Airport) ac;
+//
+//    System.out.println(a);
+
   }
+
 }

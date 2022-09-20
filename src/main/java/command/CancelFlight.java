@@ -13,11 +13,19 @@ public class CancelFlight {
 
   public static void cancelFlight(Console console){
     FlightController.getInstance().getAllFlight().values()
-        .forEach(f -> System.out.println());
+        .forEach(f -> console.printLine(f.prettyFormat()));
+    cancelFlightMain(console);
   }
 
   private static void cancelFlightMain(Console console) {
-    int flightId = ConsoleUtil.getInt("Please enter id of the user you want to cancel.", console);
+    int flightId = ConsoleUtil
+        .getInt("Please enter id of the user you want to cancel. Enter '-1' to return menu.", console);
+
+    if (flightId == -1){
+      console.printLine("returned to menu.");
+      return;
+    }
+
     try {
       if (FlightController.getInstance().cancelFlightById(flightId)){
         console.printLine("Cancelled successfully.");

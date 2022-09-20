@@ -1,6 +1,8 @@
 package ui.concretes;
 
 import app.FlightManager;
+import command.AddFlight;
+import command.CancelFlight;
 import command.RemoveTicket;
 import command.RemoveUser;
 import ui.abstracts.AbstractAdminMenu;
@@ -37,11 +39,11 @@ public class AdminMenu extends AbstractAdminMenu {
 
   @Override
   protected void cancelFlight() {
-    throw new RuntimeException("not implemented");
+    CancelFlight.cancelFlight();
   }
 
   @Override
   protected void addNewFlight() {
-    throw new RuntimeException("not implemented");
+    AddFlight.addNewFlight();
   }
 }

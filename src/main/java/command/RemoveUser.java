@@ -18,7 +18,14 @@ public class RemoveUser {
   }
 
   private static void removeUserMain(Console console) {
-    int userId = ConsoleUtil.getInt("Please enter id of the user you want to delete.", console);
+    int userId = ConsoleUtil
+        .getInt("Please enter id of the user you want to delete. Enter '-1' to return menu.", console);
+
+    if (userId == -1){
+      console.printLine("returned to menu.");
+      return;
+    }
+
     try {
       if (UserController.getInstance().deleteUserById(userId)){
         console.printLine("Removed successfully.");

@@ -39,6 +39,10 @@ public class FlightService {
     }
   }
 
+  public boolean addFlight(Flight value){
+    return flightDAO.add(value.getId(), value);
+  }
+
   public boolean cancelFlightById(int id) throws NoSuchFlightException {
     if (flightDAO.getById(id).isEmpty()) {
       throw new NoSuchFlightException();

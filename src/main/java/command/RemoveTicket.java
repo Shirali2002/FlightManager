@@ -20,7 +20,14 @@ public class RemoveTicket {
 
 
   private static void removeTicketMain(Console console) {
-    int ticketId = ConsoleUtil.getInt("Please enter id of the ticket you want to delete.", console);
+    int ticketId = ConsoleUtil
+        .getInt("Please enter id of the ticket you want to delete. Enter '-1' to return menu.", console);
+
+    if (ticketId == -1){
+      console.printLine("returned to menu.");
+      return;
+    }
+
     try {
       if (BookingController.getInstance().cancelBooking(ticketId)){
         console.printLine("Removed successfully.");
