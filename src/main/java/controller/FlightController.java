@@ -38,6 +38,10 @@ public class FlightController {
     return flightService.cancelFlightById(id);
   }
 
+  public boolean cancelAllFlight() {
+    return flightService.cancelAllFlight();
+  }
+
   public List<Flight> getAllFlightsNextHours(int howManyHours) {
     return flightService.getAllFlightsNextHours(howManyHours);
   }

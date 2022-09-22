@@ -26,8 +26,9 @@ public class MenuUtil {
       2. Cancel flight
       3. Remove user
       4. Remove Ticket
-      5. Help
-      6. Logout
+      5. Generate test flight data
+      6. Help
+      7. Logout
       """;
 
   public static final String menuMessage = "Please enter the feature number you wish to use:";

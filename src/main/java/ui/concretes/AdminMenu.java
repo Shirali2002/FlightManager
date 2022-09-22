@@ -30,6 +30,11 @@ public class AdminMenu extends AbstractAdminMenu {
   }
 
   @Override
+  protected void generateTestFlightData() {
+    throw new RuntimeException("not implemented");
+  }
+
+  @Override
   protected void removeUser() {
     RemoveUser.removeUser();
   }

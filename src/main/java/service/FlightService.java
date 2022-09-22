@@ -52,6 +52,10 @@ public class FlightService {
     return flightDAO.deleteById(id);
   }
 
+  public boolean cancelAllFlight() {
+    return flightDAO.save(new HashMap<>());
+  }
+
   public List<Flight> getAllFlightsNextHours(int howManyHours) {
     return getAllFlight()
         .values().stream()
