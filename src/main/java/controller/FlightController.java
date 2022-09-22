@@ -54,7 +54,6 @@ public class FlightController {
   }
 
   public boolean addPassengerById(Passenger passenger, int flightId) throws FlightCapacityOverflowException {
-    System.out.println("addpassengerbyid e girdi");
     return flightService.addPassengerById(passenger, flightId);
   }
 }

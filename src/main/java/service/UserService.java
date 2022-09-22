@@ -107,6 +107,11 @@ public class UserService {
       }
     }
 
+    String ad = "mehemmed";
+    for (char c: ad.toCharArray()) {
+
+    }
+
     return hasLower && hasUpper && hasDigit;
   }
 }

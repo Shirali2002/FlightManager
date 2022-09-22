@@ -96,6 +96,10 @@ public class Flight implements Serializable, Formattable {
     }
   }
 
+  public boolean removePassenger(Passenger passenger) {
+    return this.passengerList.remove(passenger);
+  }
+
   public int getFlightCapacity() {
     return flightCapacity;
   }

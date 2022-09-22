@@ -7,7 +7,6 @@ import model.User;
 import service.UserService;
 
 import java.util.HashMap;
-import java.util.Optional;
 
 public class UserController {
   private static final UserController USER_CONTROLLER = new UserController();

@@ -87,6 +87,7 @@ public class FlightService {
     if (flight == null) return false;
 
     if (flight.addPassenger(passenger)){
+      flightDAO.save(allFlight);
       return true;
     } else {
       throw new FlightCapacityOverflowException();

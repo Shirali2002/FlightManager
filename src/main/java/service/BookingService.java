@@ -1,8 +1,10 @@
 package service;
 
 import controller.BookingController;
+import controller.FlightController;
 import controller.UserController;
 import dao.DAO;
+import dao.FlightRepository;
 import dao.TicketRepository;
 import exception.FlightCapacityOverflowException;
 import exception.NoSuchBookingException;
@@ -40,9 +42,13 @@ public class BookingService {
   }
 
   public boolean cancelBooking(int ticketId) throws NoSuchBookingException {
-    if (ticketDAO.getById(ticketId).isEmpty()) {
-      throw new NoSuchBookingException();
+    HashMap<Integer, Flight> allFlight = FlightController.getInstance().getAllFlight();
+    Ticket ticket = ticketDAO.getById(ticketId).orElseThrow(NoSuchBookingException::new);
+    Flight flight = allFlight.get(ticket.getFlightId());
+    if (flight != null){
+      flight.removePassenger(ticket.getPassenger());
     }
+    FlightRepository.getInstance().save(allFlight);
     return ticketDAO.deleteById(ticketId);
   }
 
