@@ -1,12 +1,7 @@
 package ui.concretes;
 
 import app.FlightManager;
-import command.CancelTicket;
-import command.FlightInfo;
-import command.Help;
-import command.MyBookingInfo;
-import command.OnlineBoard;
-import command.SearchAndBookFlight;
+import command.*;
 import ui.abstracts.AbstractMenu;
 
 public class Menu extends AbstractMenu {
@@ -40,8 +35,13 @@ public class Menu extends AbstractMenu {
   }
 
   @Override
-  protected void searchAndBookFlight() {
-    SearchAndBookFlight.searchAndBookFlight();
+  protected void bookFlight() {
+    BookFlight.getFlightAndBookFlight();
+  }
+
+  @Override
+  protected void searchFlight() {
+    SearchFlight.searchAndDisplayFlights();
   }
 
   @Override

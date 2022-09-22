@@ -13,15 +13,20 @@ public abstract class AbstractMenu {
       switch (input){
         case 1 -> showOnlineBoard();
         case 2 -> showFlightInfo();
-        case 3 -> searchAndBookFlight();
-        case 4 -> cancelBooking();
-        case 5 -> showMyFlights();
-        case 6 -> help();
-        case 7 -> logout();
+        case 3 -> searchFlight();
+        case 4 -> bookFlight();
+        case 5 -> cancelBooking();
+        case 6 -> showMyFlights();
+        case 7 -> help();
+        case 8 -> logout();
         default -> System.out.println("Input is not in choices!");
       }
     }
   }
+
+  protected abstract void bookFlight();
+
+  protected abstract void searchFlight();
 
   protected abstract void logout();
 
@@ -30,8 +35,6 @@ public abstract class AbstractMenu {
   protected abstract void showMyFlights();
 
   protected abstract void cancelBooking();
-
-  protected abstract void searchAndBookFlight();
 
   protected abstract void showFlightInfo();
 

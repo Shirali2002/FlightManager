@@ -1,3 +1,4 @@
+/*
 package command;
 
 import app.FlightManager;
@@ -55,7 +56,7 @@ public class SearchAndBookFlight {
       } else {
         return bookAgainCheck(flight, console);
       }
-    } catch (FlightCapacityOverflowException ex){
+    } catch (FlightCapacityOverflowException ex) {
       console.printLine("The flight capacity for this flight is full. Please choose another flight.");
       return false;
     }
@@ -122,3 +123,4 @@ public class SearchAndBookFlight {
         .collect(Collectors.toList());
   }
 }
+*/

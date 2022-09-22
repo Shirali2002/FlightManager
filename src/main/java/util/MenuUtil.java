@@ -4,11 +4,12 @@ public class MenuUtil {
   public static final String mainMenuText = """
       1. Online-board
       2. Flight info
-      3. Search and book flight
-      4. Cancel booking
-      5. My flights
-      6. Help
-      7. Logout
+      3. Search flight
+      4. Book flight
+      5. Cancel booking
+      6. My flights
+      7. Help
+      8. Logout
       """;
 
   public static final String loginMenuText = """
