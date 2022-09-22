@@ -20,18 +20,13 @@ public class AdminMenu extends AbstractAdminMenu {
   }
 
   @Override
-  protected void help() {
-    throw new RuntimeException("not implemented");
-  }
-
-  @Override
   protected void removeTicket() {
     CancelTicket.cancelTicketForAdmin();
   }
 
   @Override
   protected void generateTestFlightData() {
-    throw new RuntimeException("not implemented");
+    TestData.generateTestFlightData();
   }
 
   @Override

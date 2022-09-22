@@ -8,6 +8,8 @@ import model.*;
 import util.ConsoleUtil;
 import util.FlightDate;
 
+import java.time.Duration;
+
 public class AddFlight {
   public static void addNewFlight() {
     addNewFlight(new RealConsole());
@@ -16,7 +18,7 @@ public class AddFlight {
   public static void addNewFlight(Console console) {
     try {
       FlightDate startDate = getFLightDateFromUser("time for begin", console);
-      FlightDate endDate = getFLightDateFromUser("time for finish", console);
+      Duration duration = getDurationFromUser(console);
 
       Airport.displayAllAirports(console);
       console.printLine("In this section, please enter begin destination info.");
@@ -33,7 +35,7 @@ public class AddFlight {
       int capacity = ConsoleUtil.getInt("Please enter passenger capacity of flight: ", console);
 
       if (FlightController.getInstance()
-          .addFlight(new Flight(startDate, endDate, whereTo, whereFrom, airline, capacity))){
+          .addFlight(new Flight(startDate, duration, whereTo, whereFrom, airline, capacity))){
         console.printLine("Flight added successfully");
       } else {
         console.printLine("UNSUCCESSFULL. There was a problem. Please try again.");
@@ -46,8 +48,16 @@ public class AddFlight {
     }
   }
 
-  private static boolean addFlight() {
-    return false;
+  private static Duration getDurationFromUser(Console console){
+    int hours = ConsoleUtil.getInt("How many hours flight will continue?", console);
+    int minutes = ConsoleUtil.getInt("How many minutes flight will continue?", console);
+
+    if (hours > 24 || minutes>=60){
+      console.printLine("Flight duration must be less than 24 hours and minutes must be less than 60. Please try again.");
+      return getDurationFromUser(console);
+    }
+
+    return Duration.ofMinutes(hours*60L + minutes);
   }
 
   private static FlightDate getFLightDateFromUser(String whichDate, Console console){

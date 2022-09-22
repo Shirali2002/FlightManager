@@ -8,6 +8,7 @@ import model.Airport;
 import model.Flight;
 import util.ConsoleUtil;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -34,11 +35,10 @@ public class TestData {
     while (fromWhere.equals(toWhere)) {
       toWhere = Airport.values()[rand.nextInt(Airport.values().length)];
     }
-    LocalDateTime dateTime = LocalDateTime.now().plusDays(rand.nextInt(5)).plusHours(rand.nextInt(24)).plusMinutes(rand.nextInt(60));
-//    Duration duration = Duration.ofHours(rand.nextInt(10));
-//    int seats = rand.nextInt(100);
-//    return new Flight(flightDesignation, fromWhere, toWhere, airline, dateTime, duration, seats);
-    return null;
+    LocalDateTime startDate = LocalDateTime.now().plusDays(rand.nextInt(5)).plusHours(rand.nextInt(24)).plusMinutes(rand.nextInt(60));
+    Duration duration = Duration.ofHours(rand.nextInt(24));
+    int capacity = rand.nextInt(100);
+    return new Flight(startDate, duration, toWhere, fromWhere, airline, capacity);
   }
 
   private static void checkDeleteOldData(Console console) {

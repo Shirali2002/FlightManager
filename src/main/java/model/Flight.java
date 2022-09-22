@@ -5,7 +5,9 @@ import util.FlightDate;
 import util.IdUtil;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,7 +15,7 @@ import java.util.Objects;
 public class Flight implements Serializable, Formattable {
   private int id;
   private LocalDateTime startDate;
-  private LocalDateTime endDate;
+  private Duration duration;
   private Airport toWhere;
   private Airport fromWhere;
   private Airline airline;
@@ -21,13 +23,43 @@ public class Flight implements Serializable, Formattable {
   private int flightCapacity;
 
   public Flight(FlightDate startDate,
-                FlightDate endDate,
+                FlightDate duration,
                 Airport toWhere,
                 Airport fromWhere,
                 Airline airline,
                 int flightCapacity) {
     this.startDate = startDate.getLocalDateTime();
-    this.endDate = endDate.getLocalDateTime();
+    this.duration = Duration.ofMinutes(duration.getHour()* 60L +duration.getMinutes());
+    this.toWhere = toWhere;
+    this.fromWhere = fromWhere;
+    this.airline = airline;
+    this.flightCapacity = flightCapacity >= 1 ? flightCapacity : 0;
+    this.id = IdUtil.getNewId(DB.FLIGHT_ID).orElseThrow();
+  }
+
+  public Flight(FlightDate startDate,
+                Duration duration,
+                Airport toWhere,
+                Airport fromWhere,
+                Airline airline,
+                int flightCapacity) {
+    this.startDate = startDate.getLocalDateTime();
+    this.duration = duration;
+    this.toWhere = toWhere;
+    this.fromWhere = fromWhere;
+    this.airline = airline;
+    this.flightCapacity = flightCapacity >= 1 ? flightCapacity : 0;
+    this.id = IdUtil.getNewId(DB.FLIGHT_ID).orElseThrow();
+  }
+
+  public Flight(LocalDateTime startDate,
+                Duration duration,
+                Airport toWhere,
+                Airport fromWhere,
+                Airline airline,
+                int flightCapacity) {
+    this.startDate = startDate;
+    this.duration = duration;
     this.toWhere = toWhere;
     this.fromWhere = fromWhere;
     this.airline = airline;
@@ -51,12 +83,16 @@ public class Flight implements Serializable, Formattable {
     this.startDate = startDate;
   }
 
-  public LocalDateTime getEndDate() {
-    return endDate;
+  public Duration getDuration() {
+    return duration;
   }
 
-  public void setEndDate(LocalDateTime endDate) {
-    this.endDate = endDate;
+  public void setDuration(Duration duration) {
+    this.duration = duration;
+  }
+
+  public LocalDateTime getEndDate() {
+    return this.startDate.plusMinutes(duration.toMinutes());
   }
 
   public Airport getToWhere() {
@@ -133,7 +169,7 @@ public class Flight implements Serializable, Formattable {
 
   @Override
   public String toString() {
-    return "Flight{id=%d, startDate=%s, endDate=%s, toWhere=%s, fromWhere=%s, airline=%s, passengerList=%s, flightCapacity=%d, freeSeats=%d}"
-        .formatted(id, startDate, endDate, toWhere, fromWhere, airline, passengerList, flightCapacity, getFreeSeatCount());
+    return "Flight{id=%d, startDate=%s, duration=%s, toWhere=%s, fromWhere=%s, airline=%s, passengerList=%s, flightCapacity=%d, freeSeats=%d}"
+        .formatted(id, startDate, duration, toWhere, fromWhere, airline, passengerList, flightCapacity, getFreeSeatCount());
   }
 }

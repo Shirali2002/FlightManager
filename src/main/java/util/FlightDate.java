@@ -23,6 +23,11 @@ public class FlightDate {
     this.day = day;
   }
 
+  public FlightDate(int hour, int minutes) {
+    this.hour = hour;
+    this.minutes = minutes;
+  }
+
   public LocalDateTime getLocalDateTime(){
     return LocalDateTime.of(year, month, day, hour, minutes);
   }
