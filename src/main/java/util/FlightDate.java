@@ -1,6 +1,8 @@
 package util;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class FlightDate {
   private int year;
@@ -70,5 +72,16 @@ public class FlightDate {
 
   public void setMinutes(int minutes) {
     this.minutes = minutes;
+  }
+
+  public static String prettyLocalDateTime(LocalDateTime localDateTime){
+    LocalDate localDate = localDateTime.toLocalDate();
+    LocalTime localTime = localDateTime.toLocalTime();
+    return String.format("%d-%d-%d %d:%d",
+        localDate.getYear(),
+        localDate.getMonthValue(),
+        localDate.getDayOfMonth(),
+        localTime.getHour(),
+        localTime.getMinute());
   }
 }

@@ -6,7 +6,9 @@ import util.IdUtil;
 
 import java.io.Serializable;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -150,9 +152,20 @@ public class Flight implements Serializable, Formattable {
 
   @Override
   public String prettyFormat() {
-    return toString();
-//    throw new RuntimeException("pretty format not implemented");
+    return String.format("| %-4.4s | %-15.15s | %-15.15s | %-25.25s | from %-40.40s | to %-40.40s | %-5.5s |",
+        getId(),
+        FlightDate.prettyLocalDateTime(getStartDate()),
+        FlightDate.prettyLocalDateTime(getEndDate()),
+        getAirline().getName(),
+        getFromWhere().getName(),
+        getToWhere().getName(),
+        getFreeSeatCount()
+        );
+
+
   }
+
+
 
   @Override
   public boolean equals(Object o) {

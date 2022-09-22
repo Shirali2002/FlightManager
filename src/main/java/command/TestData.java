@@ -35,7 +35,10 @@ public class TestData {
     while (fromWhere.equals(toWhere)) {
       toWhere = Airport.values()[rand.nextInt(Airport.values().length)];
     }
-    LocalDateTime startDate = LocalDateTime.now().plusDays(rand.nextInt(5)).plusHours(rand.nextInt(24)).plusMinutes(rand.nextInt(60));
+    LocalDateTime startDate = LocalDateTime.now()
+        .plusDays(rand.nextInt(5) - 1)
+        .plusHours(rand.nextInt(24) - 1)
+        .plusMinutes(rand.nextInt(60) - 1);
     Duration duration = Duration.ofHours(rand.nextInt(24));
     int capacity = rand.nextInt(100);
     return new Flight(startDate, duration, toWhere, fromWhere, airline, capacity);

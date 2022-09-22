@@ -19,7 +19,7 @@ public class CancelFlight {
 
   private static void cancelFlightMain(Console console) {
     int flightId = ConsoleUtil
-        .getInt("Please enter id of the user you want to cancel. Enter '-1' to return menu.", console);
+        .getInt("Please enter id of the flight you want to cancel. Enter '-1' to return menu.", console);
 
     if (flightId == -1){
       console.printLine("returned to menu.");
