@@ -4,6 +4,7 @@ import controller.BookingController;
 import controller.UserController;
 import dao.DAO;
 import dao.TicketRepository;
+import exception.FlightCapacityOverflowException;
 import exception.NoSuchBookingException;
 import exception.NoSuchFlightException;
 import model.Flight;
@@ -28,9 +29,10 @@ public class BookingService {
   }
 
   public Optional<Ticket> bookFlight(String passengerName, String passengerSurname,
-                                     int flightId, int userId){
+                                     int flightId, int userId) throws FlightCapacityOverflowException{
     Ticket newTicket = new Ticket(new Passenger(passengerName, passengerSurname), flightId, userId);
-    if (ticketDAO.add(newTicket.getId(), newTicket)){
+
+    if (ticketDAO.add(newTicket.getId(), newTicket)) {
       return Optional.of(newTicket);
     } else {
       return Optional.empty();
@@ -38,21 +40,21 @@ public class BookingService {
   }
 
   public boolean cancelBooking(int ticketId) throws NoSuchBookingException {
-    if (ticketDAO.getById(ticketId).isEmpty()){
+    if (ticketDAO.getById(ticketId).isEmpty()) {
       throw new NoSuchBookingException();
     }
     return ticketDAO.deleteById(ticketId);
   }
 
-  public HashMap<Integer, Ticket> getAllBooking(){
+  public HashMap<Integer, Ticket> getAllBooking() {
     return ticketDAO.getAll().orElse(new HashMap<>());
   }
 
-  public Optional<Ticket> getBookingById(int id){
+  public Optional<Ticket> getBookingById(int id) {
     return ticketDAO.getById(id);
   }
 
-  public List<Integer> getUserBookings(int userId){
+  public List<Integer> getUserBookings(int userId) {
     return ticketDAO.getAll().orElse(new HashMap<>())
         .values().stream()
         .filter(t -> t.getUserIdWhoOrderedTicket() == userId)
@@ -60,7 +62,7 @@ public class BookingService {
         .collect(Collectors.toList());
   }
 
-  public Optional<Integer> getUserIdByUsername(String username){
+  public Optional<Integer> getUserIdByUsername(String username) {
     return UserController.getInstance().getAllUser()
         .values().stream()
         .filter(u -> u.getUsername().equals(username))

@@ -1,10 +1,7 @@
 package ui.concretes;
 
 import app.FlightManager;
-import command.AddFlight;
-import command.CancelFlight;
-import command.RemoveTicketForAdmin;
-import command.RemoveUser;
+import command.*;
 import ui.abstracts.AbstractAdminMenu;
 
 public class AdminMenu extends AbstractAdminMenu {
@@ -29,7 +26,7 @@ public class AdminMenu extends AbstractAdminMenu {
 
   @Override
   protected void removeTicket() {
-    RemoveTicketForAdmin.removeTicket();
+    CancelTicket.cancelTicketForAdmin();
   }
 
   @Override

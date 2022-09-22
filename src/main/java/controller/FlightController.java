@@ -1,8 +1,10 @@
 package controller;
 
+import exception.FlightCapacityOverflowException;
 import exception.NoSuchFlightException;
 import model.Airport;
 import model.Flight;
+import model.Passenger;
 import service.FlightService;
 import util.FlightDate;
 
@@ -28,7 +30,7 @@ public class FlightController {
     return flightService.getFlightById(id);
   }
 
-  public boolean addFlight(Flight value){
+  public boolean addFlight(Flight value) {
     return flightService.addFlight(value);
   }
 
@@ -51,5 +53,8 @@ public class FlightController {
     }
   }
 
-
+  public boolean addPassengerById(Passenger passenger, int flightId) throws FlightCapacityOverflowException {
+    System.out.println("addpassengerbyid e girdi");
+    return flightService.addPassengerById(passenger, flightId);
+  }
 }

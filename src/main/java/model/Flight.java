@@ -129,7 +129,7 @@ public class Flight implements Serializable, Formattable {
 
   @Override
   public String toString() {
-    return "Flight{id=%d, startDate=%s, endDate=%s, toWhere=%s, fromWhere=%s, airline=%s, passengerList=%s}"
-        .formatted(id, startDate, endDate, toWhere, fromWhere, airline, passengerList);
+    return "Flight{id=%d, startDate=%s, endDate=%s, toWhere=%s, fromWhere=%s, airline=%s, passengerList=%s, flightCapacity=%d, freeSeats=%d}"
+        .formatted(id, startDate, endDate, toWhere, fromWhere, airline, passengerList, flightCapacity, getFreeSeatCount());
   }
 }

@@ -5,6 +5,7 @@ import console.Console;
 import console.RealConsole;
 import controller.BookingController;
 import controller.FlightController;
+import exception.FlightCapacityOverflowException;
 import exception.NoSuchFlightException;
 import exception.UnsuccessfulSearchException;
 import model.Airport;
@@ -40,20 +41,24 @@ public class SearchAndBookFlight {
   }
 
   private static boolean bookFlight(Flight flight, Console console) {
-    String passengerName = ConsoleUtil.getString("Please enter passenger name:", console);
-    String passengerSurname = ConsoleUtil.getString("Please enter passenger surname:", console);
-    Optional<Ticket> ticket = BookingController.getInstance().bookFlight(passengerName,
-        passengerSurname,
-        flight.getId(),
-        FlightManager.getLoggedInUserId());
+    try {
+      String passengerName = ConsoleUtil.getString("Please enter passenger name:", console);
+      String passengerSurname = ConsoleUtil.getString("Please enter passenger surname:", console);
+      Optional<Ticket> ticket = BookingController.getInstance().bookFlight(passengerName,
+          passengerSurname,
+          flight.getId(),
+          FlightManager.getLoggedInUserId());
 
-    if (ticket.isEmpty()) {
-      console.printLine("There is problem with booking. Please connect with our customer service..");
+      if (ticket.isEmpty()) {
+        console.printLine("There is problem with booking. Please connect with our customer service..");
+        return false;
+      } else {
+        return bookAgainCheck(flight, console);
+      }
+    } catch (FlightCapacityOverflowException ex){
+      console.printLine("The flight capacity for this flight is full. Please choose another flight.");
       return false;
-    } else {
-      return bookAgainCheck(flight, console);
     }
-
   }
 
   private static boolean bookAgainCheck(Flight flight, Console console) {

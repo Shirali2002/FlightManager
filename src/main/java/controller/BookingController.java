@@ -1,6 +1,7 @@
 package controller;
 
 import console.Console;
+import exception.FlightCapacityOverflowException;
 import exception.NoSuchBookingException;
 import exception.NoSuchFlightException;
 import model.Passenger;
@@ -22,7 +23,8 @@ public class BookingController {
     return bookingController;
   }
 
-  public Optional<Ticket> bookFlight(String passengerName, String passengerSurname, int flightId, int userId) {
+  public Optional<Ticket> bookFlight(String passengerName, String passengerSurname, int flightId, int userId)
+      throws FlightCapacityOverflowException {
     return bookingService.bookFlight(passengerName, passengerSurname, flightId, userId);
   }
 

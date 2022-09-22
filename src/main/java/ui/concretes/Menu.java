@@ -1,7 +1,7 @@
 package ui.concretes;
 
 import app.FlightManager;
-import command.CancelTicketUser;
+import command.CancelTicket;
 import command.FlightInfo;
 import command.Help;
 import command.MyBookingInfo;
@@ -36,7 +36,7 @@ public class Menu extends AbstractMenu {
 
   @Override
   protected void cancelBooking() {
-    CancelTicketUser.cancelTicket();
+    CancelTicket.cancelTicketForUser();
   }
 
   @Override

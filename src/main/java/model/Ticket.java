@@ -1,6 +1,8 @@
 package model;
 
+import controller.FlightController;
 import database.DB;
+import exception.FlightCapacityOverflowException;
 import util.IdUtil;
 
 import java.io.Serializable;
@@ -15,10 +17,11 @@ public class Ticket implements Serializable, Formattable {
   private final LocalDateTime dateOfReserve;
 
 
-  public Ticket(Passenger passenger, int flightId, int userIdWhoOrderedTicket) {
+  public Ticket(Passenger passenger, int flightId, int userIdWhoOrderedTicket) throws FlightCapacityOverflowException {
     this.id = IdUtil.getNewId(DB.TICKET_ID).orElseThrow();
     this.passenger = passenger;
     this.flightId = flightId;
+    FlightController.getInstance().addPassengerById(passenger, this.flightId);
     this.userIdWhoOrderedTicket = userIdWhoOrderedTicket;
     this.dateOfReserve = LocalDateTime.now();
   }
