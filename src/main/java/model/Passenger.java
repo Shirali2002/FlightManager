@@ -28,6 +28,11 @@ public class Passenger implements Serializable {
     this.surname = surname;
   }
 
+  public String getFullName() {
+    return name + " " + surname;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (o == null || getClass() != o.getClass()) return false;

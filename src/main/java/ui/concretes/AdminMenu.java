@@ -30,6 +30,11 @@ public class AdminMenu extends AbstractAdminMenu {
   }
 
   @Override
+  protected void showPassengerListByFlightId() {
+    ShowPassengerList.showPassengerList();
+  }
+
+  @Override
   protected void removeUser() {
     RemoveUser.removeUser();
   }

@@ -18,7 +18,7 @@ public class CancelTicket {
 
   public static void cancelTicketForAdmin(Console console) {
     BookingController.getInstance().getAllBooking().values()
-            .forEach(t -> System.out.println(t.prettyFormat()));
+            .forEach(t -> console.printLine(t.prettyFormat()));
     cancelTicketAdminMain(console);
   }
 

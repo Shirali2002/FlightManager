@@ -17,7 +17,7 @@ public class User implements Serializable, Formattable {
     this.id = IdUtil.getNewId(DB.USER_ID).orElseThrow();
     this.name = name;
     this.surname = surname;
-    this.username = username;  // registerde yoxla uniqe olsun..
+    this.username = username;
     this.password = password;
   }
 
@@ -45,6 +45,10 @@ public class User implements Serializable, Formattable {
     this.surname = surname;
   }
 
+  public String getFullName(){
+    return name + " " + surname;
+  }
+
   public String getUsername() {
     return username;
   }
@@ -63,7 +67,10 @@ public class User implements Serializable, Formattable {
 
   @Override
   public String prettyFormat() {
-    return String.format(" %d | %s | %s %s ", getId(), getUsername(), getName(), getSurname());
+    return String.format("| %-4.4s | %-15.15s | %-40.40s |",
+        getId(),
+        getUsername(),
+        getFullName());
   }
 
   @Override

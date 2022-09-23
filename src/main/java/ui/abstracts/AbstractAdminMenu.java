@@ -16,11 +16,14 @@ public abstract class AbstractAdminMenu {
         case 3 -> removeUser();
         case 4 -> removeTicket();
         case 5 -> generateTestFlightData();
-        case 6 -> logout();
+        case 6 -> showPassengerListByFlightId();
+        case 7 -> logout();
         default -> System.out.println("Input is not in choices!");
       }
     }
   }
+
+  protected abstract void showPassengerListByFlightId();
 
   protected abstract void generateTestFlightData();
 

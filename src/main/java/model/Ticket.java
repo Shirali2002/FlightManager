@@ -1,8 +1,14 @@
 package model;
 
+import controller.BookingController;
 import controller.FlightController;
+import controller.UserController;
 import database.DB;
 import exception.FlightCapacityOverflowException;
+import exception.NoSuchBookingException;
+import exception.NoSuchFlightException;
+import exception.NoSuchUserException;
+import util.FlightDate;
 import util.IdUtil;
 
 import java.io.Serializable;
@@ -60,8 +66,29 @@ public class Ticket implements Serializable, Formattable {
 
   @Override
   public String prettyFormat() {
-    return toString();
-//    throw new RuntimeException("pretty format not implemented");
+    Flight flightById = null;
+    User userById;
+    try {
+      flightById = FlightController.getInstance().getFlightById(flightId);
+      userById = UserController.getInstance().getUserById(userIdWhoOrderedTicket);
+    } catch (NoSuchFlightException ex) {
+      return String.format("| %-4.4s | There is no flight with ticket's flight id. So there is no ticket.",
+          getId()
+      );
+    } catch (NoSuchUserException ue) {
+      userById = null;
+    }
+
+    assert flightById != null;
+    return String.format("| %-4.4s | customer - %-15.15s | passenger - %-30.30s | from %-5.5s | to %-5.5s | %-20.20s | %-15.15s |",
+        getId(),
+        userById != null ? userById.getUsername() : "-",
+        passenger.getFullName(),
+        flightById.getFromWhere().getAirportCode(),
+        flightById.getToWhere().getAirportCode(),
+        flightById.getAirline().getName(),
+        FlightDate.prettyLocalDateTime(dateOfReserve)
+    );
   }
 
   @Override

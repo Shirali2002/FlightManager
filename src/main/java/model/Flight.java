@@ -31,7 +31,7 @@ public class Flight implements Serializable, Formattable {
                 Airline airline,
                 int flightCapacity) {
     this.startDate = startDate.getLocalDateTime();
-    this.duration = Duration.ofMinutes(duration.getHour()* 60L +duration.getMinutes());
+    this.duration = Duration.ofMinutes(duration.getHour() * 60L + duration.getMinutes());
     this.toWhere = toWhere;
     this.fromWhere = fromWhere;
     this.airline = airline;
@@ -152,7 +152,7 @@ public class Flight implements Serializable, Formattable {
 
   @Override
   public String prettyFormat() {
-    return String.format("| %-4.4s | %-15.15s | %-15.15s | %-25.25s | from %-40.40s | to %-40.40s | %-5.5s |",
+    return String.format("| %-4.4s | %-15.15s | %-15.15s | %-25.25s | from %-40.40s | to %-40.40s | capacity %-5.5s |",
         getId(),
         FlightDate.prettyLocalDateTime(getStartDate()),
         FlightDate.prettyLocalDateTime(getEndDate()),
@@ -160,12 +160,8 @@ public class Flight implements Serializable, Formattable {
         getFromWhere().getName(),
         getToWhere().getName(),
         getFreeSeatCount()
-        );
-
-
+    );
   }
-
-
 
   @Override
   public boolean equals(Object o) {
