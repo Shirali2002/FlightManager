@@ -4,6 +4,7 @@ import dao.FlightRepository;
 import model.Airline;
 import model.Airport;
 import model.Flight;
+import model.Passenger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -73,6 +74,14 @@ public class FlightServiceTest {
         1
     );
     Assertions.assertEquals(1, resFlights.size());
+  }
+
+  @Test
+  public void testAddPassengerFlightById(){
+    addTestFlight(testFlight);
+    flightService.addPassengerFlightById(new Passenger("Nicat", "Alihummatov"), testFlight.getId());
+
+    Assertions.assertEquals(1, flightService.getFlightById(testFlight.getId()).getPassengerList().size());
   }
 
 

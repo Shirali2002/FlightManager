@@ -1,11 +1,9 @@
 package service;
 
-import controller.FlightController;
 import dao.DAO;
 import dao.FlightRepository;
 import exception.FlightCapacityOverflowException;
 import exception.NoSuchFlightException;
-import exception.NoSuchUserException;
 import model.Airport;
 import model.Flight;
 import model.Passenger;
@@ -85,7 +83,7 @@ public class FlightService {
         ).collect(Collectors.toList());
   }
 
-  public boolean addPassengerById(Passenger passenger, int flightId) throws FlightCapacityOverflowException{
+  public boolean addPassengerFlightById(Passenger passenger, int flightId) throws FlightCapacityOverflowException{
     HashMap<Integer, Flight> allFlight = flightDAO.getAll().orElse(new HashMap<>());
     Flight flight = allFlight.get(flightId);
     if (flight == null) return false;
