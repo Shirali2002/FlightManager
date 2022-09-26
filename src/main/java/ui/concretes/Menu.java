@@ -16,7 +16,7 @@ public class Menu extends AbstractMenu {
 
   @Override
   protected void logout() {
-    FlightManager.getInstance().logout();
+    Logout.userLogout();
   }
 
   @Override

@@ -2,12 +2,14 @@ package service;
 
 import controller.FlightController;
 import controller.UserController;
+import dao.impl.LogRepository;
 import dao.inter.DAO;
 import dao.impl.FlightRepository;
 import dao.impl.TicketRepository;
 import exception.FlightCapacityOverflowException;
 import exception.NoSuchBookingException;
 import model.Flight;
+import model.Log;
 import model.Passenger;
 import model.Ticket;
 import model.User;

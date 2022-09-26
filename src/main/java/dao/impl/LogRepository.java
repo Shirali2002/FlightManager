@@ -2,6 +2,7 @@ package dao.impl;
 
 
 import console.Console;
+import console.RealConsole;
 import dao.inter.LogDao;
 import database.DB;
 import model.Log;
@@ -15,21 +16,22 @@ import java.time.format.DateTimeFormatter;
 
 public class LogRepository implements LogDao {
   private static final LogRepository logRepository = new LogRepository();
-  private final String dbFolderPath = "src/main/java/database";
+  private final String dbFolderPath = "src/main/java/database/";
 
   private LogRepository() {
   }
 
-  public static LogRepository getInstance(){
+  public static LogRepository getInstance() {
     return logRepository;
   }
 
   @Override
   public boolean save(String message, Log log, Console console) {
     File f = new File(dbFolderPath + DB.LOG_DB.getFileName());
-    if (!f.exists()){
+    System.out.println(f.getPath());
+    if (!f.exists()) {
       try {
-        if(!f.createNewFile()){
+        if (!f.createNewFile()) {
           throw new IOException();
         }
       } catch (IOException e) {
@@ -38,7 +40,7 @@ public class LogRepository implements LogDao {
       }
     }
 
-    try (BufferedWriter bw = new BufferedWriter(new FileWriter(f, true))){
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(f, true))) {
       String formattedDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
       bw.append(String.format("%s [%s] --- %s\n", formattedDateTime, log.name(), message));
       return true;

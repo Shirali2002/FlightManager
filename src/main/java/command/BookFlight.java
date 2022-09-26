@@ -54,6 +54,7 @@ public class BookFlight {
   private static boolean bookAgainCheck(Flight flight, Console console) {
     String input = ConsoleUtil.getString("Book again?(y/n)", console);
     if (input.equalsIgnoreCase("y")) {
+
       return bookFlight(flight, console);
     } else if (input.equalsIgnoreCase("n")) {
       return true;

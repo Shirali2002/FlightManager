@@ -25,6 +25,7 @@ public class BookingController {
 
   public Optional<Ticket> bookFlight(String passengerName, String passengerSurname, int flightId, int userId)
       throws FlightCapacityOverflowException {
+
     return bookingService.bookFlight(passengerName, passengerSurname, flightId, userId);
   }
 
@@ -53,5 +54,4 @@ public class BookingController {
   public Optional<Integer> getUserIdByUsername(String username) {
     return bookingService.getUserIdByUsername(username);
   }
-
 }

@@ -1,14 +1,19 @@
 package command;
 
+import app.FlightManager;
 import console.Console;
 import console.RealConsole;
 import controller.UserController;
+import dao.impl.LogRepository;
 import exception.PasswordNotEqualException;
 import exception.StrongPasswordException;
 import exception.UniqueUsernameException;
+import model.Log;
 import util.ConsoleUtil;
 
 public class Register {
+  private static final LogRepository log = LogRepository.getInstance();
+
   public static boolean register() {
     return register(new RealConsole());
   }
@@ -31,6 +36,8 @@ public class Register {
         return false;
       } else if (password.equals(passwordAgain)) {
         UserController.getInstance().register(name, surname, username, password);
+        log.save(String.format("new user registered. username=%s", username),
+            Log.Info, console);
         return true;
       } else {
         throw new PasswordNotEqualException();

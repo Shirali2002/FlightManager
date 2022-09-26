@@ -16,7 +16,7 @@ public class AdminMenu extends AbstractAdminMenu {
 
   @Override
   protected void logout() {
-    FlightManager.getInstance().adminlogout();
+    Logout.adminLogout();
   }
 
   @Override
