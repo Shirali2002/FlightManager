@@ -2,8 +2,8 @@ package service;
 
 
 import app.FlightManager;
-import dao.DAO;
-import dao.UserRepository;
+import dao.inter.DAO;
+import dao.impl.UserRepository;
 import exception.NoSuchUserException;
 import exception.StrongPasswordException;
 import exception.UniqueUsernameException;

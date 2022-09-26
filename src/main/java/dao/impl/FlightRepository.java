@@ -1,5 +1,6 @@
-package dao;
+package dao.impl;
 
+import dao.inter.DAO;
 import database.DB;
 import model.Flight;
 import util.DatabaseUtil;

@@ -1,14 +1,12 @@
 package service;
 
-import controller.BookingController;
 import controller.FlightController;
 import controller.UserController;
-import dao.DAO;
-import dao.FlightRepository;
-import dao.TicketRepository;
+import dao.inter.DAO;
+import dao.impl.FlightRepository;
+import dao.impl.TicketRepository;
 import exception.FlightCapacityOverflowException;
 import exception.NoSuchBookingException;
-import exception.NoSuchFlightException;
 import model.Flight;
 import model.Passenger;
 import model.Ticket;

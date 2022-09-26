@@ -1,4 +1,4 @@
-package dao;
+package dao.inter;
 
 import java.util.HashMap;
 import java.util.Optional;

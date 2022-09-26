@@ -1,6 +1,6 @@
 package service;
 
-import dao.FlightRepository;
+import dao.impl.FlightRepository;
 import model.Airline;
 import model.Airport;
 import model.Flight;

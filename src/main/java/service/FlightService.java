@@ -1,7 +1,7 @@
 package service;
 
-import dao.DAO;
-import dao.FlightRepository;
+import dao.inter.DAO;
+import dao.impl.FlightRepository;
 import exception.FlightCapacityOverflowException;
 import exception.NoSuchFlightException;
 import model.Airport;

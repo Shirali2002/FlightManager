@@ -6,7 +6,8 @@ public enum DB {
   FLIGHT_ID("FlightId.txt"),
   FLIGHT_DB("Flights.bin"),
   TICKET_DB("Tickets.bin"),
-  USER_DB("Users.bin");
+  USER_DB("Users.bin"),
+  LOG_DB("Application.log");
 
   private final String fileName;
 
