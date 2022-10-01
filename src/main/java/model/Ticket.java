@@ -1,11 +1,9 @@
 package model;
 
-import controller.BookingController;
 import controller.FlightController;
 import controller.UserController;
 import database.DB;
 import exception.FlightCapacityOverflowException;
-import exception.NoSuchBookingException;
 import exception.NoSuchFlightException;
 import exception.NoSuchUserException;
 import util.FlightDate;
@@ -27,7 +25,7 @@ public class Ticket implements Serializable, Formattable {
     this.id = IdUtil.getNewId(DB.TICKET_ID).orElseThrow();
     this.passenger = passenger;
     this.flightId = flightId;
-    FlightController.getInstance().addPassengerById(passenger, this.flightId);
+    FlightController.getInstance().addPassengerByFlightId(passenger, this.flightId);
     this.userIdWhoOrderedTicket = userIdWhoOrderedTicket;
     this.dateOfReserve = LocalDateTime.now();
   }

@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class UserRepository implements DAO<User> {
-  public static final UserRepository userRepo = new UserRepository();
+  private static final UserRepository userRepo = new UserRepository();
 
   private UserRepository() {
   }

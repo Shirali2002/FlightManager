@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class FlightService {
-  public static final FlightService flightService = new FlightService();
+  private static final FlightService flightService = new FlightService();
   private final DAO<Flight> flightDAO = FlightRepository.getInstance();
 
   private FlightService() {
@@ -83,7 +83,7 @@ public class FlightService {
         ).collect(Collectors.toList());
   }
 
-  public boolean addPassengerFlightById(Passenger passenger, int flightId) throws FlightCapacityOverflowException{
+  public boolean addPassengerByFlightId(Passenger passenger, int flightId) throws FlightCapacityOverflowException{
     HashMap<Integer, Flight> allFlight = flightDAO.getAll().orElse(new HashMap<>());
     Flight flight = allFlight.get(flightId);
     if (flight == null) return false;

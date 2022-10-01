@@ -2,14 +2,12 @@ package service;
 
 import controller.FlightController;
 import controller.UserController;
-import dao.impl.LogRepository;
 import dao.inter.DAO;
 import dao.impl.FlightRepository;
 import dao.impl.TicketRepository;
 import exception.FlightCapacityOverflowException;
 import exception.NoSuchBookingException;
 import model.Flight;
-import model.Log;
 import model.Passenger;
 import model.Ticket;
 import model.User;
@@ -30,8 +28,20 @@ public class BookingService {
     return bookingService;
   }
 
-  public Optional<Ticket> bookFlight(String passengerName, String passengerSurname,
-                                     int flightId, int userId) throws FlightCapacityOverflowException{
+
+  public HashMap<Integer, Ticket> getAllBooking() {
+    return ticketDAO.getAll().orElse(new HashMap<>());
+  }
+
+  public Optional<Ticket> getBookingById(int id) {
+    return ticketDAO.getById(id);
+  }
+
+  public Optional<Ticket> bookFlight(String passengerName,
+                                     String passengerSurname,
+                                     int flightId,
+                                     int userId)
+          throws FlightCapacityOverflowException{
     Ticket newTicket = new Ticket(new Passenger(passengerName, passengerSurname), flightId, userId);
 
     if (ticketDAO.add(newTicket.getId(), newTicket)) {
@@ -50,14 +60,6 @@ public class BookingService {
     }
     FlightRepository.getInstance().save(allFlight);
     return ticketDAO.deleteById(ticketId);
-  }
-
-  public HashMap<Integer, Ticket> getAllBooking() {
-    return ticketDAO.getAll().orElse(new HashMap<>());
-  }
-
-  public Optional<Ticket> getBookingById(int id) {
-    return ticketDAO.getById(id);
   }
 
   public List<Integer> getUserBookings(int userId) {

@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UserService {
-  public static final UserService USER_SERVICE = new UserService();
+  private static final UserService USER_SERVICE = new UserService();
   private final DAO<User> userDao = UserRepository.getInstance();
 
   private UserService() {

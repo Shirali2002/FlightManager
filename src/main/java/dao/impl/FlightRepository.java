@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class FlightRepository implements DAO<Flight> {
-  public static final FlightRepository flightRepo = new FlightRepository();
+  private static final FlightRepository flightRepo = new FlightRepository();
 
   private FlightRepository() {
   }

@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class TicketRepository implements DAO<Ticket> {
-  public static final TicketRepository ticketRepo = new TicketRepository();
+  private static final TicketRepository ticketRepo = new TicketRepository();
 
   private TicketRepository() {
   }
